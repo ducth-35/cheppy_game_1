@@ -6,7 +6,7 @@ const JUMP_VELOCITY = -600.0
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
-var is_running = true
+var is_running = false
 var is_locked = false
 var is_falling = false
 var current_speed = SPEED
@@ -79,17 +79,17 @@ func jump_over_gap():
 
 
 func fall_down():
-	is_falling = true
-	is_running = false
-	is_locked = true
-	
-	velocity = Vector2.ZERO
+	#is_falling = true
+	#is_running = true
+	#is_locked = true
+	#
+	#velocity = Vector2.ZERO
 	play_anim("fall")
 
 	# 👉 cho animation hiện ra
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.4).timeout
 	
-	await freeze_game(0.5)
+	await freeze_game(0.4)
 
 
 # ✅ freeze chuẩn (không bị treo)
@@ -137,8 +137,8 @@ func _physics_process(delta):
 	if not is_on_floor():
 		if velocity.y < 0:
 			play_anim("jump")
-		else:
-			play_anim("fall")
+		#else:
+			#play_anim("run")
 	else:
 		play_anim("run")
 
