@@ -169,8 +169,7 @@ position = Vector2(492.99997, 1436)
 scale = Vector2(0.56410486, 0.56410474)
 sprite_frames = SubResource("SpriteFrames_c6x0f")
 animation = &"jump"
-frame = 3
-frame_progress = 0.9335492
+frame_progress = 0.7427429
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(525, 957)
