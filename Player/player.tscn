@@ -35,8 +35,8 @@
 [ext_resource type="Texture2D" uid="uid://dhwhmbwqtt23v" path="res://assets/jump/Cheppy_Jumping_00016.png" id="25_8ynux"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j2n6q"]
-radius = 108.0
-height = 460.0
+radius = 90.0
+height = 404.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c6x0f"]
 animations = [{
@@ -67,7 +67,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"fall",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -161,15 +161,43 @@ animations = [{
 script = ExtResource("1_pisgm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(509, 1434)
+position = Vector2(522, 1479)
 shape = SubResource("CapsuleShape2D_j2n6q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(492.99997, 1436)
-scale = Vector2(0.56410486, 0.56410474)
+position = Vector2(516, 1491.0001)
+scale = Vector2(0.56410486, 0.5673831)
 sprite_frames = SubResource("SpriteFrames_c6x0f")
-animation = &"jump"
-frame_progress = 0.7427429
+animation = &"idle"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(525, 957)
+position = Vector2(524, 1305)
+
+[node name="Button" type="Button" parent="."]
+visible = false
+offset_left = 48.0
+offset_top = 548.0
+offset_right = 222.0
+offset_bottom = 616.0
+text = "Start"
+
+[node name="Button2" type="Button" parent="."]
+visible = false
+offset_left = 50.0
+offset_top = 636.0
+offset_right = 224.0
+offset_bottom = 704.0
+text = "True
+"
+
+[node name="Button3" type="Button" parent="."]
+visible = false
+offset_left = 52.0
+offset_top = 731.0
+offset_right = 226.0
+offset_bottom = 799.0
+text = "False"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]

@@ -64,7 +64,7 @@ func on_reach_finish():
 	
 	await get_tree().create_timer(1.0).timeout
 	
-	await freeze_game(0.5)
+	await freeze_game(2.5)
 
 
 # =========================
@@ -87,9 +87,9 @@ func fall_down():
 	play_anim("fall")
 
 	# 👉 cho animation hiện ra
-	await get_tree().create_timer(0.4).timeout
+	await get_tree().create_timer(1.5).timeout
 	
-	await freeze_game(0.4)
+	await freeze_game(2)
 
 
 # ✅ freeze chuẩn (không bị treo)
@@ -152,3 +152,15 @@ func _physics_process(delta):
 func play_anim(name: String):
 	if anim.animation != name:
 		anim.play(name)
+
+
+func _on_button_pressed():
+	set_running(true)
+
+
+func _on_button_2_pressed():
+	on_answer(true)
+
+
+func _on_button_3_pressed():
+	on_answer(false)
