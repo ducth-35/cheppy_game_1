@@ -174,7 +174,6 @@ animation = &"idle"
 position = Vector2(524, 1305)
 
 [node name="Button" type="Button" parent="."]
-visible = false
 offset_left = 48.0
 offset_top = 548.0
 offset_right = 222.0
@@ -182,7 +181,6 @@ offset_bottom = 616.0
 text = "Start"
 
 [node name="Button2" type="Button" parent="."]
-visible = false
 offset_left = 50.0
 offset_top = 636.0
 offset_right = 224.0
@@ -191,7 +189,6 @@ text = "True
 "
 
 [node name="Button3" type="Button" parent="."]
-visible = false
 offset_left = 52.0
 offset_top = 731.0
 offset_right = 226.0

@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var camera: Camera2D = $CharacterBody2D/Camera2D
+@onready var player: CharacterBody2D = $CharacterBody2D
 
 var _start_view_snapped := false
 
@@ -9,6 +10,21 @@ func _ready() -> void:
 	get_viewport().size_changed.connect(_update_camera_limits)
 	_update_camera_limits()
 	_snap_start_view_once()
+	_setup_game_start_flow()
+
+
+func _setup_game_start_flow() -> void:
+	var countdown := get_node_or_null("CountDown")
+	if countdown == null:
+		_start_gameplay()
+		return
+
+	countdown.countdown_finished.connect(_start_gameplay)
+
+
+func _start_gameplay() -> void:
+	if player.has_method("set_running"):
+		player.set_running(true)
 
 
 func _snap_start_view_once() -> void:
