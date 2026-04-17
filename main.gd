@@ -2,8 +2,10 @@ extends Node2D
 
 @onready var camera: Camera2D = $CharacterBody2D/Camera2D
 @onready var player: CharacterBody2D = $CharacterBody2D
+@onready var progress_ui: CanvasLayer = $ProgressQuestions
 
 var _start_view_snapped := false
+var _js_update_progress_callback = null
 
 
 func _ready() -> void:
@@ -11,6 +13,7 @@ func _ready() -> void:
 	_update_camera_limits()
 	_snap_start_view_once()
 	_setup_game_start_flow()
+	_setup_js_bridge_callbacks()
 
 
 func _setup_game_start_flow() -> void:
@@ -25,6 +28,36 @@ func _setup_game_start_flow() -> void:
 func _start_gameplay() -> void:
 	if player.has_method("set_running"):
 		player.set_running(true)
+	update_progress_from_rn(1, 4)
+
+
+func update_progress_from_rn(opened_count: int, total_count: int = -1) -> void:
+	if progress_ui and progress_ui.has_method("update_progress_from_rn"):
+		progress_ui.call("update_progress_from_rn", opened_count, total_count)
+
+
+func _setup_js_bridge_callbacks() -> void:
+	if not OS.has_feature("web"):
+		return
+
+	var window = JavaScriptBridge.get_interface("window")
+	if window == null:
+		return
+
+	_js_update_progress_callback = JavaScriptBridge.create_callback(_on_js_update_progress)
+	window.updateGodotProgress = _js_update_progress_callback
+
+
+func _on_js_update_progress(args: Array) -> void:
+	var opened_count := 0
+	var total_count := -1
+
+	if args.size() > 0:
+		opened_count = int(args[0])
+	if args.size() > 1:
+		total_count = int(args[1])
+
+	update_progress_from_rn(opened_count, total_count)
 
 
 func _snap_start_view_once() -> void:

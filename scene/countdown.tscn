@@ -1,29 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://wg5od8lrow6t"]
+[gd_scene load_steps=10 format=3 uid="uid://wg5od8lrow6t"]
 
 [ext_resource type="Texture2D" uid="uid://c7pxlik61v86o" path="res://assets/count_down/3.png" id="1_018d3"]
 [ext_resource type="Script" uid="uid://0bpuij87ortj" path="res://scene/countdown.gd" id="1_tgv5b"]
 [ext_resource type="Texture2D" uid="uid://cjg10fp5so3dx" path="res://assets/count_down/2.png" id="2_lv7gj"]
 [ext_resource type="Texture2D" uid="uid://dnw8i6fe51bu" path="res://assets/count_down/1.png" id="3_tgv5b"]
 [ext_resource type="Texture2D" uid="uid://cmmy0mv7uodry" path="res://assets/count_down/go.png" id="4_s0qqp"]
+[ext_resource type="AudioStream" uid="uid://dbmtxlonvl8s1" path="res://assets/sounds/countdown.mp3" id="6_s0qqp"]
 
 [sub_resource type="Animation" id="Animation_018d3"]
 length = 3.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Control/CountdownSprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.8, 1.6, 2.4, 3.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("1_018d3"), ExtResource("2_lv7gj"), ExtResource("3_tgv5b"), ExtResource("4_s0qqp")]
-}
 
 [sub_resource type="Animation" id="Animation_phxqv"]
 resource_name = "countdown"
-length = 3.8
+length = 4.73
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -31,7 +20,7 @@ tracks/0/path = NodePath("Control/CountdownSprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.8, 1.6, 2.4, 3.2),
+"times": PackedFloat32Array(0.0, 1.0, 2.0, 3.0),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("1_018d3"), ExtResource("2_lv7gj"), ExtResource("3_tgv5b"), ExtResource("4_s0qqp")]
@@ -43,10 +32,10 @@ tracks/1/path = NodePath("Control/CountdownSprite:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8, 0.94, 1.6, 1.74, 2.4, 2.54, 3.2, 3.34),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.0, 0.12, 0.32, 1.0, 1.12, 1.32, 2.0, 2.12, 2.32, 3.0, 3.16, 3.42),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.520025, 0.520025), Vector2(0.68, 0.68), Vector2(0.520025, 0.520025), Vector2(0.68, 0.68), Vector2(0.520025, 0.520025), Vector2(0.68, 0.68), Vector2(0.520025, 0.520025), Vector2(0.76, 0.76), Vector2(0.520025, 0.520025)]
+"values": [Vector2(0.520025, 0.520025), Vector2(0.72, 0.72), Vector2(0.520025, 0.520025), Vector2(0.520025, 0.520025), Vector2(0.72, 0.72), Vector2(0.520025, 0.520025), Vector2(0.520025, 0.520025), Vector2(0.72, 0.72), Vector2(0.520025, 0.520025), Vector2(0.520025, 0.520025), Vector2(0.82, 0.82), Vector2(0.560025, 0.560025)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -55,10 +44,10 @@ tracks/2/path = NodePath("Control/CountdownSprite:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.79, 0.8, 3.2, 3.5, 3.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.0, 0.02, 4.0, 4.45, 4.73),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.45), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.45), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_05akg"]
@@ -89,7 +78,7 @@ z_index = 1
 z_as_relative = false
 position = Vector2(535, 1027)
 scale = Vector2(0.5200251, 0.520025)
-texture = ExtResource("2_lv7gj")
+texture = ExtResource("1_018d3")
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
 layout_mode = 1
@@ -99,5 +88,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.5019608)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("6_s0qqp")
 
 [connection signal="animation_finished" from="Control/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

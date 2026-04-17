@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk6rof0gr662p"]
+
+[ext_resource type="Script" uid="uid://n1yr4o2pa7s" path="res://scene/progress_questions.gd" id="1_1k3w8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_outer"]
+bg_color = Color(0.74902, 0.431373, 0.0117647, 1)
+corner_radius_top_left = 55
+corner_radius_top_right = 55
+corner_radius_bottom_right = 55
+corner_radius_bottom_left = 55
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_track"]
+bg_color = Color(1, 0.756863, 0.435294, 1)
+corner_radius_top_left = 44
+corner_radius_top_right = 44
+corner_radius_bottom_right = 44
+corner_radius_bottom_left = 44
+
+[node name="ProgressQuestions" type="CanvasLayer"]
+layer = 100
+script = ExtResource("1_1k3w8")
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 869.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BarOuter" type="Panel" parent="Container"]
+layout_mode = 0
+offset_right = 869.0
+offset_bottom = 39.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_outer")
+
+[node name="TrackBg" type="Panel" parent="Container"]
+layout_mode = 0
+offset_left = 9.5
+offset_top = 8.0
+offset_right = 857.5
+offset_bottom = 30.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_track")
+
+[node name="FillClip" type="Control" parent="Container"]
+clip_contents = true
+anchors_preset = 0
+offset_left = 9.5
+offset_top = 8.0
+offset_right = 857.5
+offset_bottom = 30.0
+
+[node name="FillMain" type="Panel" parent="Container/FillClip"]
+layout_mode = 0
+offset_bottom = 22.0
+
+[node name="FillHighlight" type="ColorRect" parent="Container/FillClip"]
+layout_mode = 0
+offset_top = 1.0
+offset_bottom = 21.0
+color = Color(1, 0.694118, 0.356863, 0.25)
+
+[node name="Pins" type="Control" parent="Container"]
+anchors_preset = 0
+offset_right = 869.0
+offset_bottom = 39.0
